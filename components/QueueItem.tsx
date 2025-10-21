@@ -9,9 +9,10 @@ type Props = {
   isAdmin: boolean;
   onTurun: (guideId: number) => void;
   onTagEdit?: (guideId: number) => void;
+  onRemove?: (guideId: number) => void;
 };
 
-export default function QueueItem({ item, index, isAdmin, onTurun, onTagEdit }: Props) {
+export default function QueueItem({ item, index, isAdmin, onTurun, onTagEdit, onRemove }: Props) {
   const { guide } = item;
   function formatTime(t: number|null) { return t ? formatWibTime(t) : ''; }
   return (
@@ -53,6 +54,14 @@ export default function QueueItem({ item, index, isAdmin, onTurun, onTagEdit }: 
             className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs md:text-sm font-medium text-emerald-700 hover:bg-emerald-100 active:bg-emerald-200 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-1"
           >
             Turun Antrian
+          </button>
+        )}
+        {isAdmin && onRemove && (
+          <button
+            onClick={() => onRemove(guide.id)}
+            className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-1.5 text-xs md:text-sm font-medium text-rose-700 hover:bg-rose-100 active:bg-rose-200 transition-colors ml-2"
+          >
+            Hapus
           </button>
         )}
       </div>

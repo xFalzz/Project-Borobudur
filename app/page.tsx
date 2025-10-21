@@ -13,7 +13,7 @@ function PageInner() {
     { username: 'korlap1', password: 'borobudur1', displayName: 'Korlap A' },
     { username: 'korlap2', password: 'borobudur2', displayName: 'Korlap B' },
   ];
-  const { queue, turun, setTag } = useQueue();
+  const { queue, turun, setTag, removeFromQueue } = useQueue();
   const [adminUser, setAdminUser] = useState<null | { username: string; displayName: string }>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const { activeSession, setActiveSession } = useQueue();
@@ -91,6 +91,7 @@ function PageInner() {
             isAdmin={isAdmin}
             onTurun={onTurun}
             onTagEdit={onTagEdit}
+            onRemove={(id) => { if (isAdmin) removeFromQueue(id); }}
           />
           <div className="mt-8">
             <SessionBoard isAdmin={isAdmin} />

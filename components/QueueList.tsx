@@ -8,9 +8,10 @@ type Props = {
   isAdmin: boolean;
   onTurun: (guideId: number) => void;
   onTagEdit: (guideId: number) => void;
+  onRemove?: (guideId: number) => void;
 };
 
-export default function QueueList({ items, isAdmin, onTurun, onTagEdit }: Props) {
+export default function QueueList({ items, isAdmin, onTurun, onTagEdit, onRemove }: Props) {
   if (!items.length) {
     return (
       <div className="rounded-xl border-2 border-dashed border-emerald-100 bg-white/80 p-10 text-center text-slate-400 shadow-lg min-h-[90px] animate-fade-in">
@@ -29,6 +30,7 @@ export default function QueueList({ items, isAdmin, onTurun, onTagEdit }: Props)
           isAdmin={isAdmin}
           onTurun={onTurun}
           onTagEdit={onTagEdit}
+          onRemove={onRemove}
         />)
       )}
     </ul>
